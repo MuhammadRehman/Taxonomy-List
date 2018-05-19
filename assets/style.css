@@ -1,0 +1,48 @@
+.taxonomy-list-item .tax-child-list-item {
+    margin: 0px 50px;
+}
+
+.tax-name {
+    width: 100%;
+    float: left;
+}
+
+.tax-name .tax-image, .tax-name .tax-title {
+    float: left;
+}
+
+.tax-desc {
+    display: inline-block;
+}
+
+.tax-title a {
+    font-size: 30px;
+    font-weight: 100;
+    margin: 0px 10px;
+}
+
+.taxonomy-list-item {
+    margin-bottom: 2%;
+    display: inline-block;
+    width: 100%;
+}
+
+.tax-arrow {
+    width: 13px;
+    font-size: 18px;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+
+.taxonomy-list-item .tax-arrow {
+    float: left;
+}
+
+.taxonomy-list-item .tax-details {
+    float: left;
+    width: 90%;
+}
+
+.tax-child-list-item {
+    display: none;
+}
