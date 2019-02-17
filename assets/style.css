@@ -46,3 +46,11 @@
 .tax-child-list-item {
     display: none;
 }
+
+.taxonomy-list-item .tax-arrow.rotate {    
+    transform: rotate(90deg);
+}
+
+.taxonomy-search-filter {
+    margin-bottom: 5%;
+}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Taxonomy List
- * Version: 1.0.0
+ * Version: 1.0.2
  * Plugin URI: http://plugins.muhammadrehman.com/
  * Description: You can display list of any taxonomy terms by using shortcode.
  * Author: Muhammad Rehman
@@ -15,8 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  
 define('WPTLS_PLUGIN_DIR_URL',plugin_dir_url( __FILE__ ) );
  
-function wptls_style() {
-    wp_enqueue_style( 'wptls_fontawesome', 'https://use.fontawesome.com/releases/v5.0.8/css/all.css' );
+function wptls_style() {    
     wp_enqueue_style( 'wptls_style', WPTLS_PLUGIN_DIR_URL . 'assets/style.css' );
     wp_enqueue_script( 'wptls_script', WPTLS_PLUGIN_DIR_URL . 'assets/script.js', array(),false ,true);
 }
@@ -32,6 +31,7 @@ function wptls_taxonomy_list( $atts ) {
         'exclude' => '',
         'include' => '',
         'order' => 'ASC',
+        'search_bar' => 0,
     ), $atts);
 
 
@@ -43,7 +43,11 @@ function wptls_taxonomy_list( $atts ) {
         'parent'   => 0
     ) );
 
-    $html = '<div class="taxonomy-list">';
+    $html = '';
+    if( $atts['search_bar'] == 1 )
+        $html .= wptls_search_filter();
+
+    $html .= '<div class="taxonomy-list">';
 
     if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
         foreach ( $terms as $term ) {
@@ -68,11 +72,11 @@ function wptls_taxonomy_list( $atts ) {
                 $image = wp_get_attachment_url( $thumbnail_id );
             }
                 
-            $html .= '<div class="taxonomy-list-item">';
+            $html .= '<div class="taxonomy-list-item" data-taxname="'.strtolower( $term->name ).'">';
             $term_link = get_term_link( $term );
             
             if( wptls_has_child_terms( $atts['name'],$term->term_id,$atts['hide_empty'] ) == true )
-                $html .= '<div class="tax-arrow"><i class="fas fa-angle-right"></i></div>';
+                $html .= '<div class="tax-arrow">►</div>';
             
             $html .= '<div class="tax-details">
                 <div class="tax-name">                
@@ -125,4 +129,12 @@ function wptls_has_child_terms( $taxonomy, $parent_id, $hide_empty ) {
         return true;
     else 
         return false;
+}
+
+function wptls_search_filter() {
+    $html = '<div class="taxonomy-search-filter">
+                <input type="text" placeholder="Search..." id="tax-search-filter"/>
+            </div>';
+
+    return $html;
 }
