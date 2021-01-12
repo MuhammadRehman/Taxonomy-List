@@ -2,7 +2,7 @@
 Contributors: Muhammad Rehman
 Tags: taxonomy list, taxonomy list shortcode, category, taxonomy plugin, taxonomy list plugin, taxonomy terms, post category list, post categories list, post category
 Requires at least: 4.0
-Tested up to: 5.0.3
+Tested up to: 5.6
 Stable tag: 1.0.2
 License: GPLv2
 License URI: GPLv2
